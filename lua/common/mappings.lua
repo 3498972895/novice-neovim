@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<esc>", ":nohl<CR>", { desc = "HIDDEN HIGHTLIGHT SELECTION" })
+vim.keymap.set("n", "<esc>", ":nohl<CR>", { desc = "HIDDEN HIGHTLIGHT SELECTION", silent = true })
 -- Move focus among windows
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "MOVE FOCUS TO THE LEFT WINDOW" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "MOVE FOCUS TO THE RIGHT WINDOW" })

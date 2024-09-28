@@ -53,11 +53,11 @@ return {
 		}
 	end,
 	keys = {
-		{ "<leader>ff", ":Telescope fd<CR>", desc = "Telescope find files" },
-		{ "<leader>fg", ":Telescope live_grep<CR>", desc = "Telescope live grep" },
-		{ "<leader>fb", ":Telescope buffers<CR>", desc = "Telescope buffers" },
-		{ "<leader>fh", ":Telescope help_tags<CR>", desc = "Telescope help tags" },
-		{ "<leader>fw", ":Telescope grep_string<CR>", desc = "Telescope find words" },
+		{ "<leader>ff", ":Telescope fd<CR>", desc = "Telescope FIND FILES" },
+		{ "<leader>fg", ":Telescope live_grep<CR>", desc = "Telescope LIVE GREP" },
+		{ "<leader>fb", ":Telescope buffers<CR>", desc = "Telescope BUFFERS" },
+		{ "<leader>fh", ":Telescope help_tags<CR>", desc = "Telescope HELP TAGS" },
+		{ "<leader>fw", ":Telescope grep_string<CR>", desc = "Telescope FIND WORDS" },
 		-- { "<leader>ff", ":Telescope find_files<CR>", desc = "Telescope find file" },
 	},
 }

@@ -37,10 +37,10 @@ return {
 
 					client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
 						runtime = {
-							version = "LuaJIT",
+							version = "Lua 5.1",
 						},
 						workspace = {
-							checkThirdParty = true,
+							checkThirdParty = false,
 							library = {
 								vim.env.VIMRUNTIME,
 							},
@@ -72,7 +72,7 @@ return {
 					return not nvim_lsp.util.root_pattern("deno.json", "deno.jsonc")(fname)
 						and (
 							nvim_lsp.util.root_pattern("tsconfig.json")(fname)
-							or nvim_lsp.util.root_pattern("package.json", "jsconfig.json", ".git")(fname)
+							or nvim_lsp.util.root_pattern("package.json", "jsconfig.json")(fname)
 							or nvim_lsp.util.root_pattern(".")(fname)
 						)
 				end,

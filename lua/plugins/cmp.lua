@@ -24,6 +24,7 @@ return {
 			"html",
 			"cssls",
 			"pylsp",
+			"lua_ls",
 		}
 		local sources = {
 			{ name = "nvim_lsp", priority = 1000 },
@@ -52,11 +53,11 @@ return {
 				completion = cmp.config.window.bordered({
 					col_offset = -2,
 					side_padding = 0,
-					border = "rounded",
+					-- border = "rounded",
 					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
 				}),
 				documentation = cmp.config.window.bordered({
-					border = "rounded",
+					-- border = "rounded",
 					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
 				}),
 			},

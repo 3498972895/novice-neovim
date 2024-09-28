@@ -3,7 +3,7 @@ return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
 	dependencies = {
-		{ "echasnovski/mini.icons", config = {} },
+		{ "echasnovski/mini.icons", opts= {} },
 	},
 	opts = function()
 		local mini_icons = require("mini.icons")
@@ -24,27 +24,42 @@ return {
 				{ "`", desc = "MARKING" },
 				{ "]", desc = "NEXT ACTION" },
 				{ "[", desc = "PREV ACTION" },
-				{ "<C-w>", desc = "DIAGNOTIC" },
-				{ "<leader>", desc = "LEADER MAPPING" },
-				{ "<C-j>", desc = "NEXT TELESCOPE / CMP /  FOCUS BLEW WINDOW" },
-				{ "<C-k>", desc = "PREV SELECTION / CMP / FOCUS UP WINDOW" },
+				{ "<C-w>", hidden = true },
+				{ "Y", hidden = true },
+				{ "?", hidden = true },
+				{ "<C-j>", hidden = true },
+				{ "<C-k>", hidden = true },
+				{ "<C-u>", hidden = true },
+				{ "<C-d>", hidden = true },
+				{ "<C-l>", hidden = true },
+				{ "<C-l>", hidden = true },
+				{ "<C-n>", hidden = true },
+				{ "<C-p>", hidden = true },
+				{ "%", hidden = true },
+				{ "<esc>", hidden = true },
 
-				{ "<C-n>", desc = "NEXT SELECTION" },
-				{ "<C-k>", desc = "PREV SELECTION" },
-
-				{ "<C-u>", desc = "UP CMP_DOC_SCROLL/WK/BUFFER" },
-				{ "<C-d>", desc = "DOWN CMP_DOC_SCROLL/WK/BUFFER" },
-				{ "<C-l>", desc = "CMP_DOC_OPEN / FOCUS RIGHT WINDOW" },
-				{ "<C-h>", desc = "CMP_DOC_CLOSE/ FOCUS LEFT WINDOW" },
-
-				{ "<C-space>", desc = "CMP TRIGGER" },
-				{ "<C-e>", desc = "CMP ABOART" },
-
-				{ "\\", desc = "SPLIT WINDOW BLEW" },
-				{ "|", desc = "SPLIT WINDOW RIGHT" },
+				{ "\\", hidden = true },
+				{ "|", hidden = true },
 
 				{ ">", desc = "INDENT TO RIGHT" },
 				{ "<", desc = "INDENT TO LEFT" },
+
+				{ "n", hidden = true },
+				{ ">", hidden = true },
+				{ "<", hidden = true },
+				{ "f", hidden = true },
+				{ "s", hidden = true },
+				{ "q", hidden = true },
+
+				{ "<C-Left>", hidden = true },
+				{ "<C-Right>", hidden = true },
+				{ "<C-Up>", hidden = true },
+				{ "<C-Down>", hidden = true },
+
+				{ "<leader>", desc = "LEADER MAPPING" },
+				{ "<C-space>", desc = "CMP TRIGGER" },
+				{ "<C-e>", desc = "CMP ABOART" },
+				{ "K", desc = "LSP HOVER" },
 			},
 			icons = {
 				mappings = false,
@@ -68,6 +83,7 @@ return {
 				{ "<leader>", mode = { "n" } },
 				{ "[", mode = { "n" } },
 				{ "]", mode = { "n" } },
+				{ "g", mode = { "n" } },
 			},
 		}
 	end,
