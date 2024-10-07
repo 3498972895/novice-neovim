@@ -1,5 +1,5 @@
 require("common.global")
 require("common.options")
 require("common.mappings")
-require("common.cmd")
 require("common.lazy")
+require("common.cmd")

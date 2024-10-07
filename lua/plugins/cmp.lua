@@ -18,24 +18,11 @@ return {
 	opts = function()
 		-- lsp cmp
 		local cmp = require("cmp")
-		local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-		local lsps = {
-			"denols",
-			"html",
-			"cssls",
-			"pylsp",
-			"lua_ls",
-		}
 		local sources = {
 			{ name = "nvim_lsp", priority = 1000 },
 			{ name = "luasnip", priority = 500 },
 			{ name = "path", priority = 250 },
 		}
-		for _, lsp_name in ipairs(lsps) do
-			require("lspconfig")[lsp_name].setup({
-				capabilities = cmp_capabilities,
-			})
-		end
 
 		-- useful snip from frendly-snippets
 

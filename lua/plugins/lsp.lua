@@ -7,6 +7,7 @@ return {
 	config = function()
 		local nvim_lsp = require("lspconfig")
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
 		local lsp = {
 			cssls = { capabilities = capabilities },
@@ -15,6 +16,7 @@ return {
 				root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
 			},
 			pylsp = {
+				capabilities = capabilities,
 				settings = {
 					pylsp = {
 						plugins = {
@@ -27,6 +29,9 @@ return {
 				},
 			},
 			lua_ls = {
+				cmd = { "lua-lsp" },
+				capabilities = capabilities,
+				single_file_support = true,
 				on_init = function(client)
 					if client.workspace_folders then
 						local path = client.workspace_folders[1].name
@@ -41,14 +46,22 @@ return {
 						},
 						workspace = {
 							checkThirdParty = false,
+
 							library = {
 								vim.env.VIMRUNTIME,
+								-- Depending on the usage, you might want to add additional paths here.
+								-- "${3rd}/luv/library"
+								-- "${3rd}/busted/library",
 							},
 						},
 					})
 				end,
 				settings = {
-					Lua = {},
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
+						},
+					},
 				},
 			},
 			jsonls = {
@@ -67,6 +80,8 @@ return {
 				},
 			},
 			ts_ls = {
+
+				capabilities = capabilities,
 				single_file_support = false,
 				root_dir = function(fname)
 					return not nvim_lsp.util.root_pattern("deno.json", "deno.jsonc")(fname)

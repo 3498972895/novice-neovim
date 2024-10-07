@@ -5,13 +5,6 @@ U.path_to_file_name = function(path)
 	local filename = string.match(path, pattern)
 	return filename
 end
-U.is_non_filetype = function()
-	if vim.bo.filetype == "neo-tree" or vim.bo.filetype == "alpha" then
-		return true
-	else
-		return false
-	end
-end
 
 U.get_win_width = function()
 	return vim.api.nvim_win_get_width(0)
@@ -20,7 +13,11 @@ end
 U.copy_table_from = function(original)
 	local copy = {}
 	for key, value in pairs(original) do
-		copy[key] = value
+		if type(value) == "table" then
+			copy[key] = U.copy_table_from(value)
+		else
+			copy[key] = value
+		end
 	end
 	return copy
 end
@@ -60,5 +57,13 @@ U.merge_table = function(t1, t2, strategy)
 	end
 
 	return result
+end
+U.has_neo_tree_buffer = function()
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_option(buf, "filetype") == "neo-tree" then
+			return true
+		end
+	end
+	return false
 end
 return U
