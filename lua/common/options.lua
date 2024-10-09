@@ -20,7 +20,6 @@ vim.opt.showmode = false
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
-
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -77,3 +76,5 @@ vim.opt.termguicolors = true
 
 -- Not display ~ symbol
 vim.opt.fillchars = { eob = " " }
+
+vim.o.showtabline = 2

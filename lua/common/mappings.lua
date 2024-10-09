@@ -32,3 +32,54 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "INCREASE W
 -- Buffer
 vim.keymap.set("n", "]b", ":bnext<cr>", { desc = "NEXT BUFFER" })
 vim.keymap.set("n", "[b", ":bprev<cr>", { desc = "PREV BUFFER" })
+
+local function close_buffers(side)
+	local all_bufs = vim.api.nvim_list_bufs()
+	local current_buf = vim.api.nvim_get_current_buf()
+
+	local current_buf_number = (side == "left" or side == "right")
+		and (vim.api.nvim_buf_get_number(current_buf) or false)
+
+	function write(buf, current_buf) end
+	for _, buf in ipairs(all_bufs) do
+		local buf_number = vim.api.nvim_buf_get_number(buf)
+
+		local lro_condition = vim.bo[buf].filetype ~= "neo-tree" and buf ~= current_buf and buf
+
+		local buf_left = side == "left" and buf_number < current_buf_number and lro_condition
+		local buf_right = side == "right" and buf_number > current_buf_number and lro_condition
+		local buf_others = side == "others" and lro_condition
+
+		local buf_all = side == "all" and buf
+
+		local target_buf = buf_left or buf_right or buf_others or buf_all
+		if target_buf then
+			if vim.api.nvim_buf_get_option(target_buf, "modified") then
+				vim.api.nvim_set_current_buf(target_buf)
+				vim.api.nvim_command("silent noautocmd write")
+				vim.api.nvim_set_current_buf(current_buf)
+			end
+			vim.api.nvim_buf_delete(buf, { force = true })
+		end
+	end
+end
+
+vim.keymap.set("n", "<leader>bl", function()
+	close_buffers("left")
+end, { noremap = true, silent = true, desc = "CLOSE [B]UFFER [L]EFT" })
+
+vim.keymap.set("n", "<leader>br", function()
+	close_buffers("right")
+end, { noremap = true, silent = true, desc = "CLOSE [B]UFFER [R]ight" })
+
+vim.keymap.set("n", "<leader>bo", function()
+	close_buffers("others")
+end, { noremap = true, silent = true, desc = "CLOSE [B]UFFER [O]thers" })
+
+vim.keymap.set("n", "<leader>q", function()
+	close_buffers("all")
+end, { noremap = true, silent = true, desc = "CLOSE [Q]uit" })
+vim.api.nvim_command('command! Q lua vim.cmd([[let @"=&ft]])')
+vim.api.nvim_command("nnoremap <leader>bc :Q<CR>")
+vim.api.nvim_command('command! WQ lua vim.cmd([[let @"=&ft]])')
+vim.api.nvim_command("nnoremap <leader>bc :WQ<CR>")

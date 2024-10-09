@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		"b0o/schemastore.nvim", -- json schema repo
 	},
+
 	config = function()
 		local nvim_lsp = require("lspconfig")
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -41,21 +42,19 @@ return {
 					end
 
 					client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+
 						runtime = {
 							version = "Lua 5.1",
 						},
 						workspace = {
-							checkThirdParty = false,
-
 							library = {
+								vim.fn.expand("~/.luarocks/share/lua/5.1"),
 								vim.env.VIMRUNTIME,
-								-- Depending on the usage, you might want to add additional paths here.
-								-- "${3rd}/luv/library"
-								-- "${3rd}/busted/library",
 							},
 						},
 					})
 				end,
+
 				settings = {
 					Lua = {
 						completion = {

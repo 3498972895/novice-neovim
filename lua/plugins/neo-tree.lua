@@ -20,7 +20,17 @@ return {
 			},
 			default_component_configs = {
 				git_status = {
-					symbols = require("common.icons").git_symbols.icon,
+					symbols = {
+						added = "[+]",
+						modified = "[M]",
+						deleted = "[-]",
+						renamed = "[R]",
+						untracked = "[?]",
+						ignored = "[I]",
+						unstaged = "[U]",
+						staged = "[S]",
+						conflict = "[X]",
+					},
 				},
 			},
 			filesystem = {

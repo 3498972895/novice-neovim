@@ -3,7 +3,7 @@ return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
 	dependencies = {
-		{ "echasnovski/mini.icons", opts= {} },
+		{ "echasnovski/mini.icons", opts = {} },
 	},
 	opts = function()
 		local mini_icons = require("mini.icons")
