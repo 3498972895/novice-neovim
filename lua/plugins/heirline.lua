@@ -309,7 +309,7 @@ return {
 			provider = function(self)
 				local title = self.title
 				local width = vim.api.nvim_win_get_width(self.winid)
-				local pad = math.ceil((width - #title)) - 2
+				local pad = math.ceil((width - #title)) - 1
 				return "  " .. title .. string.rep(" ", pad)
 			end,
 
