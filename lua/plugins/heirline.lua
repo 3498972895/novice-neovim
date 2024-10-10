@@ -22,23 +22,6 @@ function justify(properties)
 	end
 end
 
--- vim.api.nvim_create_autocmd({ "VimEnter", "UIEnter", "BufAdd", "BufDelete" }, {
--- 	callback = function()
--- 		vim.schedule(function()
--- 			local buffers = get_bufs()
--- 			local new_buflist_cache = {}
--- 			for i, v in ipairs(buffers) do
--- 				new_buflist_cache[i] = v
--- 			end
--- 			for i = #buffers + 1, #new_buflist_cache do
--- 				new_buflist_cache[i] = nil
--- 			end
--- 			vim.g.buflist_cache = new_buflist_cache
--- 			print(#vim.g.buflist_cache)
--- 		end)
--- 	end,
--- })
-
 local colors = {
 	statusline_bg = "#0A2A3F",
 	winbar_bg = "#011627",
@@ -50,6 +33,8 @@ local colors = {
 	buf_active = "red",
 	buf_inactive = "#666666",
 	buf_trunc = "gray",
+	sidebar_active_fg = "#888888",
+	sidebar_inactive_fg = "#333333",
 }
 local icons = {
 	diff_added = "+",
@@ -309,7 +294,34 @@ return {
 			},
 		}
 
-		local tabline = heirline_utils.make_buflist({
+		local tabline_offset = {
+			condition = function(self)
+				local win = vim.api.nvim_tabpage_list_wins(0)[1]
+				local bufnr = vim.api.nvim_win_get_buf(win)
+				self.winid = win
+
+				if vim.bo[bufnr].filetype == "neo-tree" or vim.bo[bufnr].filetype == "NvimTree" then
+					self.title = "File Directory"
+					return true
+				end
+			end,
+
+			provider = function(self)
+				local title = self.title
+				local width = vim.api.nvim_win_get_width(self.winid)
+				local pad = math.ceil((width - #title)) - 2
+				return "  " .. title .. string.rep(" ", pad)
+			end,
+
+			hl = function(self)
+				if vim.api.nvim_get_current_win() == self.winid then
+					return { fg = colors.sidebar_active_fg }
+				else
+					return { fg = colors.sidebar_inactive_fg }
+				end
+			end,
+		}
+		local bufferline = heirline_utils.make_buflist({
 			init = function(self)
 				self.filename = vim.api.nvim_buf_get_name(self.bufnr)
 			end,
@@ -349,6 +361,8 @@ return {
 			provider = icons.buf_left_trunc,
 			hl = { fg = colors.buf_trunc },
 		}, { provider = icons.buf_right_trunc, hl = { fg = colors.buf_trunc } })
+
+		local tabline = { tabline_offset, bufferline }
 		heirline.setup({ statusline = statusline, winbar = winbar, tabline = tabline })
 	end,
 }
