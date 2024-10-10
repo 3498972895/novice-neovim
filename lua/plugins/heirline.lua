@@ -4,7 +4,9 @@ function is_file()
 	end
 	return true
 end
-
+local a = {
+	b = function() end,
+}
 function justify(properties)
 	local content = properties.content
 	local margin = properties.margin or "left"

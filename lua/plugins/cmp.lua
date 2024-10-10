@@ -24,8 +24,16 @@ return {
 			{ name = "path", priority = 250 },
 		}
 
-		-- useful snip from frendly-snippets
+		-- useful snip
+		local ls = require("luasnip")
+		ls.snippets = ls.snippets or {}
+		local snippets = require("common.snippets")
 
+		for _, snippet in ipairs(snippets) do
+			for _, ft in ipairs(snippet.filetype) do
+				ls.add_snippets(ft, { ls.parser.parse_snippet(snippet.keyword, snippet.content) })
+			end
+		end
 		return {
 			enable = true,
 			completion = {

@@ -15,6 +15,11 @@ return {
 			html = { capabilities = capabilities },
 			denols = {
 				root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc"),
+				init_options = {
+					enable = true,
+					lint = true,
+					unstable = true,
+				},
 			},
 			pylsp = {
 				capabilities = capabilities,
@@ -51,6 +56,22 @@ return {
 								vim.fn.expand("~/.luarocks/share/lua/5.1"),
 								vim.env.VIMRUNTIME,
 							},
+						},
+						hint = {
+							enable = true,
+							setTtype = true,
+							arrayIndex = "Disable",
+						},
+						diagnostics = {
+							globals = { "vim", "use", "winid" },
+							disable = { "undefined-field", "undefined-doc-name" },
+						},
+						completion = {
+							enable = true,
+							callSnippet = "Both",
+						},
+						telemetry = {
+							enable = false,
 						},
 					})
 				end,

@@ -50,7 +50,7 @@ return {
 		formatters = {
 			deno_fmt = {
 				command = "deno",
-				args = { "fmt", "$FILENAME", "--single-quote=true", "--no-semicolons=true" },
+				args = { "fmt", "$FILENAME", "--single-quote=true", "--prose-wrap=preserve", "--no-semicolons=true" },
 				stdin = false,
 			},
 			deno_css = {
