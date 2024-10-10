@@ -1,12 +1,12 @@
 return {
 	"stevearc/conform.nvim",
-	event = { "BufWritePre" },
+	event = { "BufReadPre" },
 	cmd = { "ConformInfo" },
 	keys = {
 		{
 			"<leader>lf",
 			function()
-				require("conform").format({ async = false, dry_run = false, lsp_format = "never" })
+				require("conform").format({ async = false, lsp_format = "fallback" })
 			end,
 			mode = "n",
 			desc = "LSP: LSP FORMAT BUFFER",
