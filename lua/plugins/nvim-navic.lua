@@ -1,6 +1,7 @@
 local colors = {
-	navic_bg = "#011627",
-	navic_fg = "#ffffff",
+	-- navic_bg = "#011627",
+	-- navic_fg = "#ffffff",
+	navic_bg = "#242933",
 }
 local icons = {
 	File = "󰈙 ",

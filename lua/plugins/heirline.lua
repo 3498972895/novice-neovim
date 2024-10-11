@@ -25,8 +25,11 @@ function justify(properties)
 end
 
 local colors = {
-	statusline_bg = "#0A2A3F",
-	winbar_bg = "#011627",
+	-- statusline_bg = "#0A2A3F",
+	-- winbar_bg = "#011627",
+	statusline_fill = "#2E3440",
+	bufferline_fill = "#242933",
+	winbar_bg = "#242933",
 	git_branch_fg = "orange",
 	error = vim.api.nvim_get_hl_by_name("DiagnosticSignError", true).foreground,
 	warn = vim.api.nvim_get_hl_by_name("DiagnosticSignWarn", true).foreground,
@@ -60,7 +63,7 @@ return {
 		-- status line components
 		local statusline = {
 
-			hl = { bg = colors.statusline_bg },
+			hl = { bg = colors.statusline_fill },
 			{
 				provider = justify,
 				hl = { bold = true },
@@ -76,6 +79,7 @@ return {
 					end
 				end,
 			},
+
 			{
 				provider = justify,
 				init = function(self)
@@ -327,6 +331,9 @@ return {
 			init = function(self)
 				self.filename = vim.api.nvim_buf_get_name(self.bufnr)
 			end,
+			condition = function()
+				return vim.bo.filetype ~= "alpha"
+			end,
 			{
 				provider = icons.buf_tag_head,
 
@@ -363,8 +370,20 @@ return {
 			provider = icons.buf_left_trunc,
 			hl = { fg = colors.buf_trunc },
 		}, { provider = icons.buf_right_trunc, hl = { fg = colors.buf_trunc } })
-
-		local tabline = { tabline_offset, bufferline }
+		local bufferline_fill = {
+			provider = "%=",
+			hl = {
+				bg = colors.bufferline_fill,
+			},
+			update = function()
+				return false
+			end,
+		}
+		local tabline = {
+			tabline_offset,
+			bufferline,
+			bufferline_fill,
+		}
 		heirline.setup({ statusline = statusline, winbar = winbar, tabline = tabline })
 	end,
 }

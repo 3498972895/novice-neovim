@@ -17,6 +17,7 @@ return {
 					["l"] = "open",
 					["h"] = "close_node",
 				},
+				border = "none",
 			},
 			default_component_configs = {
 				git_status = {
