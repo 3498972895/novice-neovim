@@ -8,7 +8,7 @@ return {
 			direction = "float",
 			float_opts = {
 				width = 100,
-				height = 25,
+				helght = 25,
 				border = "curved",
 				title_pos = "left",
 			},
