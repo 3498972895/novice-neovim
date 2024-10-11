@@ -1,21 +1,13 @@
 return {
 	{
-		"AlexvZyl/nordic.nvim",
+		"shaunsingh/nord.nvim",
 		lazy = false,
 		priority = 1000,
+		name = "nord",
 		config = function()
-			require("nordic").setup({
-				transparent = {
-					float = true,
-					bg = true,
-				},
-				cursorline = {
-					theme = "light",
-					blend = 0.5,
-				},
-			})
-
-			require("nordic").load()
+			vim.g.nord_borders = true
+			vim.g.nord_contrast = true
+			require("nord").set()
 		end,
 	},
 	{

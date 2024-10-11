@@ -75,6 +75,6 @@ vim.opt.expandtab = true
 vim.opt.termguicolors = true
 
 -- Not display ~ symbol
-vim.opt.fillchars = { eob = " " }
+vim.opt.fillchars = { eob = " ", vert = " " }
 
 vim.o.showtabline = 2

@@ -44,7 +44,10 @@ local function close_buffers(side)
 	for _, buf in ipairs(all_bufs) do
 		local buf_number = vim.api.nvim_buf_get_number(buf)
 
-		local lro_condition = vim.bo[buf].filetype ~= "neo-tree" and buf ~= current_buf and buf
+		local lro_condition = vim.bo[buf].filetype ~= "neo-tree"
+			and vim.bo[buf].filetype ~= "toggleterm"
+			and buf ~= current_buf
+			and buf
 
 		local buf_left = side == "left" and buf_number < current_buf_number and lro_condition
 		local buf_right = side == "right" and buf_number > current_buf_number and lro_condition

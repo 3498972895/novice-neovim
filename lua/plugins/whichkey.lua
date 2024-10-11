@@ -60,6 +60,8 @@ return {
 				{ "<C-space>", desc = "CMP TRIGGER" },
 				{ "<C-e>", desc = "CMP ABOART" },
 				{ "K", desc = "LSP HOVER" },
+				{ "T", desc = "TERMINAL" },
+				{ "<F7>", desc = "TERMINAL [F7]+1/2/3" },
 			},
 			icons = {
 				mappings = false,

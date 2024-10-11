@@ -1,9 +1,12 @@
 Novice-neovim
 
 This is a personal neovim building by fukuda.
-Nothing special here.
+
+Most keybindings is same as Astronvim
+
 Attention: lsp configuration is concise without using the mason plugin. So lsp is configured locally.
 For front-end developer, I use deno built-in lsp-server for javascript/typescript.
+
 html, css and other necessary lsp for front-end development are installed by nodejs globally.
 And lua-lsp is installed by luarocks locally.
 

@@ -46,7 +46,10 @@ return {
 				},
 				help_tags = {},
 				lsp_references = {
-					theme = "cursor",
+					theme = "dropdown",
+				},
+				lsp_document_symbols = {
+					theme = "dropdown",
 				},
 			},
 			extensions = {},

@@ -25,11 +25,9 @@ function justify(properties)
 end
 
 local colors = {
-	-- statusline_bg = "#0A2A3F",
-	-- winbar_bg = "#011627",
-	statusline_fill = "#2E3440",
-	bufferline_fill = "#242933",
-	winbar_bg = "#242933",
+	statusline_fill = "#3B4252",
+	bufferline_fill = "#2E3440",
+	winbar_bg = "#2E3440",
 	git_branch_fg = "orange",
 	error = vim.api.nvim_get_hl_by_name("DiagnosticSignError", true).foreground,
 	warn = vim.api.nvim_get_hl_by_name("DiagnosticSignWarn", true).foreground,
@@ -38,8 +36,8 @@ local colors = {
 	buf_active = "red",
 	buf_inactive = "#666666",
 	buf_trunc = "gray",
-	sidebar_active_fg = "#888888",
-	sidebar_inactive_fg = "#333333",
+	sidebar_active_fg = "#ffffff",
+	sidebar_inactive_fg = "#666666",
 }
 local icons = {
 	diff_added = "+",
@@ -79,6 +77,16 @@ return {
 					end
 				end,
 			},
+			{
+
+				provider = "%=",
+				update = function()
+					return false
+				end,
+				condition = function()
+					return vim.bo.filetype == "neo-tree"
+				end,
+			},
 
 			{
 				provider = justify,
@@ -91,6 +99,7 @@ return {
 						n = "NORMAL",
 						v = "VISUAL",
 						c = "COMMAND",
+						t = "TERMINAL",
 					},
 				},
 				update = "ModeChanged",

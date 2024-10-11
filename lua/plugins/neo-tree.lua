@@ -10,8 +10,10 @@ return {
 	opts = function()
 		return {
 			close_if_last_window = true,
+			popup_border_style = "rounded",
 			enable_diagnostics = false,
 			window = {
+				position = "left",
 				width = 30,
 				mappings = {
 					["l"] = "open",
@@ -20,6 +22,7 @@ return {
 				border = "none",
 			},
 			default_component_configs = {
+
 				git_status = {
 					symbols = {
 						added = "[+]",
