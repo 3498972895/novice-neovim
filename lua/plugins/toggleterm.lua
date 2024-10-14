@@ -7,8 +7,8 @@ return {
 			open_mapping = [[<f7>]],
 			direction = "float",
 			float_opts = {
-				width = 100,
-				helght = 25,
+				width = 120,
+				helght = 20,
 				border = "curved",
 				title_pos = "left",
 			},

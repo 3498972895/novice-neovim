@@ -1,7 +1,6 @@
 Novice-neovim
 
 This is a personal neovim building by fukuda.
-
 Most keybindings is same as Astronvim
 
 Attention: lsp configuration is concise without using the mason plugin. So lsp is configured locally.
