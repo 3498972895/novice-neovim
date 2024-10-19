@@ -19,6 +19,7 @@ return {
 			"css",
 			"json",
 			"tsx",
+			"python",
 		},
 		auto_install = false,
 		highlight = {

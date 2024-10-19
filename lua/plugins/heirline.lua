@@ -140,6 +140,7 @@ return {
 							local i = math.floor((math.log(fsize) / math.log(1024)))
 							self.content = string.format("%.2g%s", fsize / math.pow(1024, i), self.suffix[i + 1])
 						end,
+						update = { "BufEnter", "BufWritePre" },
 						static = {
 							suffix = { "b", "k", "M", "G", "T", "P", "E" },
 						},
