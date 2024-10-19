@@ -1,5 +1,10 @@
 function is_file()
-	if vim.bo.filetype == "neo-tree" or vim.bo.filetype == "alpha" or vim.bo.filetype == "nvim-tree" then
+	if
+		vim.bo.filetype == "neo-tree"
+		or vim.bo.filetype == "alpha"
+		or vim.bo.filetype == "nvim-tree"
+		or vim.bo.filetype == "checkhealth"
+	then
 		return false
 	end
 	return true
@@ -108,6 +113,7 @@ return {
 			{
 				update = {
 					"BufEnter",
+					"BufWritePost",
 					pattern = "*.*",
 				},
 				condition = is_file,
@@ -140,7 +146,6 @@ return {
 							local i = math.floor((math.log(fsize) / math.log(1024)))
 							self.content = string.format("%.2g%s", fsize / math.pow(1024, i), self.suffix[i + 1])
 						end,
-						update = { "BufEnter", "BufWritePre" },
 						static = {
 							suffix = { "b", "k", "M", "G", "T", "P", "E" },
 						},
@@ -341,9 +346,6 @@ return {
 			init = function(self)
 				self.filename = vim.api.nvim_buf_get_name(self.bufnr)
 			end,
-			condition = function()
-				return vim.bo.filetype ~= "alpha"
-			end,
 			{
 				provider = icons.buf_tag_head,
 
@@ -360,7 +362,9 @@ return {
 			{
 				provider = function(self)
 					local filename = self.filename
-					filename = filename == "" and "[No Name]" or vim.fn.fnamemodify(filename, ":t")
+					local fnamemodify = (vim.fn.fnamemodify(filename, ":t") == "" and "[No File]")
+						or vim.fn.fnamemodify(filename, ":t")
+					filename = filename == "" and "[No Name]" or fnamemodify
 					return " " .. filename .. " "
 				end,
 				hl = function(self)
