@@ -252,7 +252,7 @@ return {
 			{
 				provider = justify,
 				condition = heirline_conditions.lsp_attached,
-				update = { "LspAttach", "LspDetach" },
+				update = { "LspAttach", "LspDetach", "BufReadPre","BufEnter" },
 				init = function(self)
 					local names = {}
 					for i, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
